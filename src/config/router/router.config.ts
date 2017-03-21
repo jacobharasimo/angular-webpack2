@@ -39,18 +39,6 @@ export class RouterConfig {
                         }
                     }
                 }
-            )
-            .state(
-                'aside.bigData',
-                {
-                    url: '/bigData',
-                    views: {
-                        'left@aside': {
-                            template: `<explorer></explorer>`
-                        }
-                    }
-                }
-            )
-        ;
+            );
     }
 }

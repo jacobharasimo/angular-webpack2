@@ -1,0 +1,9 @@
+<button class="btn btn-full-width" ng-click="$ctrl.toggleExpand()">
+    <span ng-if="$ctrl.node.hasChildren" ng-switch="$ctrl.expanded">
+        <span ng-switch-when="false">&plus;</span>
+        <span ng-switch-when="true">&minus;</span>
+    </span>
+    {{$ctrl.node.name}}
+</button>
+
+<explorer ng-if="$ctrl.expanded" nodes="$ctrl.node.children"></explorer>

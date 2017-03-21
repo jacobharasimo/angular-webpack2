@@ -17,6 +17,7 @@
       true,
       160
     ],
+    "member-access": false,//custom
     "no-string-literal": false,
     "no-use-before-declare": true,
     "object-literal-sort-keys": false,

@@ -103,7 +103,20 @@ module.exports = function (options) {
                  */
                 {
                     test: /\.css$/,
-                    use: ['style-loader', 'css-loader'],
+                    use: [
+                        {
+                            loader: 'style-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ],
                     include: [helpers.root('src', 'styles')]
                 },
 
@@ -114,7 +127,26 @@ module.exports = function (options) {
                  */
                 {
                     test: /\.scss$/,
-                    use: ['style-loader', 'css-loader', 'sass-loader'],
+                    use: [
+                        {
+                            loader:'style-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader:'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader:'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ],
                     include: [helpers.root('src', 'styles')]
                 }
 
@@ -159,9 +191,7 @@ module.exports = function (options) {
              */
             new LoaderOptionsPlugin({
                 debug: true,
-                options: {
-
-                }
+                options: {}
             })
 
         ],
