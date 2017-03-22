@@ -8,6 +8,7 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
  * Webpack Constants
@@ -97,56 +98,26 @@ module.exports = function (options) {
                 },
 
                 /*
-                 * css loader support for *.css files (styles directory only)
-                 * Loads external css styles into the DOM, supports HMR
-                 *
+                 * Extract CSS files from .src/styles directory to external CSS file
                  */
                 {
                     test: /\.css$/,
-                    use: [
-                        {
-                            loader: 'style-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        }
-                    ],
+                    loader: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: 'css-loader'
+                    }),
                     include: [helpers.root('src', 'styles')]
                 },
 
                 /*
-                 * sass loader support for *.scss files (styles directory only)
-                 * Loads external sass styles into the DOM, supports HMR
-                 *
+                 * Extract and compile SCSS files from .src/styles directory to external CSS file
                  */
                 {
                     test: /\.scss$/,
-                    use: [
-                        {
-                            loader:'style-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader:'css-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader:'sass-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        }
-                    ],
+                    loader: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: 'css-loader!sass-loader'
+                    }),
                     include: [helpers.root('src', 'styles')]
                 }
 

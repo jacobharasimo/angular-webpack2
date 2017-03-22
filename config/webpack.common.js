@@ -13,6 +13,8 @@ const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 /*
  * Webpack Constants
  */
@@ -94,7 +96,6 @@ module.exports = function (options) {
                     ],
                     exclude: [/\.(spec|e2e)\.ts$/]
                 },
-
                 /*
                  * Json loader support for *.json files.
                  *
@@ -104,7 +105,6 @@ module.exports = function (options) {
                     test: /\.json$/,
                     use: 'json-loader'
                 },
-
                 /*
                  * to string and css loader support for *.css files (from Angular components)
                  * Returns file content as string
@@ -112,10 +112,12 @@ module.exports = function (options) {
                  */
                 {
                     test: /\.css$/,
-                    use: ['to-string-loader', 'css-loader', 'postcss-loader'],
+                    loader: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: ['css-loader']
+                    }),
                     exclude: [helpers.root('src', 'styles')]
                 },
-
                 /*
                  * to string and sass loader support for *.scss files (from Angular components)
                  * Returns compiled css content as string
@@ -123,15 +125,12 @@ module.exports = function (options) {
                  */
                 {
                     test: /\.scss$/,
-                    use: ['to-string-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader'],
+                    loader: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: ['css-loader']
+                    }),
                     exclude: [helpers.root('src', 'styles')]
                 },
-
-                {
-                    test: /\.(woff2?|ttf|eot|svg)$/,
-                    loader: 'url-loader?limit=10000'
-                },
-
                 /* Raw loader support for *.html
                  * Returns file content as string
                  *
@@ -142,7 +141,6 @@ module.exports = function (options) {
                     use: 'raw-loader',
                     exclude: [helpers.root('src/index.html')]
                 },
-
                 /*
                  * File loader for supporting images, for example, in CSS files.
                  */
@@ -150,15 +148,22 @@ module.exports = function (options) {
                     test: /\.(jpg|png|gif)$/,
                     use: 'file-loader'
                 },
-
-                /* File loader for supporting fonts, for example, in CSS files.
-                 */
                 {
-                    test: /\.(eot|woff2?|svg|ttf)([\?]?.*)$/,
+                    test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
                     use: 'file-loader'
                 },
-
-
+                {
+                    test: /\.(woff|woff2)$/,
+                    use: 'url-loader?prefix=font/&limit=5000'
+                },
+                {
+                    test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                    use: 'url-loader?limit=10000&mimetype=application/octet-stream'
+                },
+                {
+                    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                    use: 'url-loader?limit=10000'
+                }
             ],
 
         },
@@ -169,6 +174,13 @@ module.exports = function (options) {
          * See: http://webpack.github.io/docs/configuration.html#plugins
          */
         plugins: [
+            new ExtractTextPlugin(
+                {
+                    filename: '[name].[contenthash].css',
+                    allChunks: true
+                }
+            ),
+
             new AssetsPlugin({
                 path: helpers.root('dist'),
                 filename: 'webpack-assets.json',
@@ -191,9 +203,9 @@ module.exports = function (options) {
              * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
              */
             /*new CommonsChunkPlugin({
-                name: 'polyfills',
-                chunks: ['polyfills']
-            }),*/
+             name: 'polyfills',
+             chunks: ['polyfills']
+             }),*/
             // This enables tree shaking of the vendor modules
             new CommonsChunkPlugin({
                 name: 'vendor',
@@ -202,8 +214,8 @@ module.exports = function (options) {
             }),
             // Specify the correct order the scripts will be injected in
             /*new CommonsChunkPlugin({
-                name: ['polyfills', 'vendor'].reverse()
-            }),*/
+             name: ['polyfills', 'vendor'].reverse()
+             }),*/
 
             /*
              * Plugin: CopyWebpackPlugin

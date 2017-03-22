@@ -9,4 +9,7 @@ export class BigData implements ng.IController {
         this.$log.debug('big data controller: ', treeNodes);
     }
 
+    public childSelected(node) {
+        this.$log.debug('Item selected', node);
+    }
 }

@@ -1,6 +1,6 @@
 <button class="btn btn-full-width relative text-left"
         ng-click="$ctrl.getChildren()">
-    <span class="absolute left" ng-if="$ctrl.node.hasChildren" ng-switch="$ctrl.expanded">
+    <span class="absolute left" ng-if="$ctrl.node.hasChildren" ng-switch="$ctrl.isExpanded">
         <span ng-switch-when="false">&plus;</span>
         <span ng-switch-when="true">&minus;</span>
     </span>
