@@ -1,4 +1,4 @@
-export class BigData {
+export class BigData implements ng.IController {
     static $inject = [
         '$log',
         'treeNodes'

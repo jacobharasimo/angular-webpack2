@@ -1,0 +1,32 @@
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  &.left {
+    left: 0;
+    top:.5em;
+  }
+}
+.btn-full-width{
+  width: 100%;
+}
+
+.btn{
+  &.text-left{
+    @extend .text-left;
+  }
+}
+.explorer_tree{
+  &[aria-expanded="true"]{
+    margin-left: 1em;
+    margin-top: .5em;
+    margin-bottom: .5em;
+  }
+}
+.explorer_tree__list{
+  .tree_node {
+    margin-bottom: .5em;
+  }
+}

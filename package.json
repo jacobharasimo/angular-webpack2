@@ -84,7 +84,7 @@
   },
   "scripts": {
     "test": "karma start",
-    "start": "npm run-script dev",
+    "start": "yarn run dev",
     "dev": "webpack-dev-server --config config/webpack.dev.js --open --progress --profile --watch --content-base src/",
     "build": "npm test && rm -rf dist/ && node node_modules/.bin/webpack --env.prod -p && cp app/index.html dist/index.html",
     "webpack-dev-server": "webpack-dev-server",

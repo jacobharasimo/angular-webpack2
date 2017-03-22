@@ -25,8 +25,32 @@ export const BigDataModule = angular.module('bigData',
                                             type: 'Folder',
                                             icon: 'Something',
                                             hasChildren: false
+                                        },
+                                        {
+                                            name: 'Node 3',
+                                            type: 'Folder',
+                                            icon: 'Something',
+                                            hasChildren: true
+                                        },
+                                        {
+                                            name: 'Node 4',
+                                            type: 'Folder',
+                                            icon: 'Something',
+                                            hasChildren: false
                                         }
                                     ]
+                                },
+                                {
+                                    name: 'Node 4',
+                                    type: 'Folder',
+                                    icon: 'Something',
+                                    hasChildren: false
+                                },
+                                {
+                                    name: 'Node 6',
+                                    type: 'Folder',
+                                    icon: 'Something',
+                                    hasChildren: false
                                 }
                             ];
                         }

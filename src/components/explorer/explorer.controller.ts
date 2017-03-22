@@ -1,4 +1,4 @@
-export class Explorer {
+export class Explorer implements ng.IController {
     static $inject = [
         '$log'
     ];
