@@ -271,6 +271,9 @@ module.exports = function (options) {
          *
          * See: https://webpack.github.io/docs/configuration.html#node
          */
+        performance: {
+            hints: "warning"
+        },
         node: {
             global: true,
             crypto: 'empty',
