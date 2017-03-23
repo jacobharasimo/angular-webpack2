@@ -1,7 +1,7 @@
 <span class="flex-parent flex-no-wrap flex-align-center">
     <button class="btn"
             ng-class="{'not-visible':!$ctrl.node.hasChildren}"
-            ng-click="$ctrl.getChildren()"
+            ng-click="$ctrl.getChildren($event)"
             ng-switch="$ctrl.isExpanded">
                 <span class="glyphicon glyphicon-chevron-right animate"
                       ng-class="{rotate_90__clockwise:$ctrl.isExpanded}"

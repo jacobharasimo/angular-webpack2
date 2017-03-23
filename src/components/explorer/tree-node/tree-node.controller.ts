@@ -16,8 +16,7 @@ export class TreeNode implements ng.IController {
         this.isLoading = false;
     }
 
-    public getChildren() {
-        this.setSelected();
+    public getChildren(e) {
         if (!this.node.hasChildren) {
             return null;
         }
@@ -35,7 +34,16 @@ export class TreeNode implements ng.IController {
     }
 
     private icon() {
-        return 'glyphicon glyphicon-folder-open';
+        let iconString: string;
+        switch (this.node.type) {
+            case 'file':
+                iconString = 'glyphicon glyphicon-file';
+                break;
+            default:
+                iconString = 'glyphicon glyphicon-folder-open';
+                break;
+        }
+        return iconString;
     }
 
     private expandChildren(node) {
