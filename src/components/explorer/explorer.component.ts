@@ -5,6 +5,6 @@ export const ExplorerComponent: ng.IComponentOptions = {
     controller: Explorer,
     bindings: {
         nodes: '<',
-        ngSelected: '&'
+        selected: '&'
     }
 };

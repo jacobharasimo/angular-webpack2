@@ -4,6 +4,7 @@ export class BigData implements ng.IController {
         '$log'
     ];
     treeNodes: ITreeNode[];
+    selectedNode: ITreeNode;
 
     constructor(public $log: ng.ILogService) {
     }
@@ -35,6 +36,6 @@ export class BigData implements ng.IController {
     }
 
     public childSelected(node) {
-        this.$log.debug('Item selected', node);
+        this.$log.debug('big data controller: ', node);
     }
 }

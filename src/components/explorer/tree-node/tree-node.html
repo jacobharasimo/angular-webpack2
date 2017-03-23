@@ -24,6 +24,7 @@
     </a>
 </span>
 <explorer aria-expanded="{{$ctrl.isExpanded}}"
+          selected="$ctrl.setSelected()"
           class="block explorer_tree"
           ng-if="$ctrl.isExpanded"
           nodes="$ctrl.node.children"></explorer>
