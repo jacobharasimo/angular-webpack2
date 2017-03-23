@@ -1,37 +1,44 @@
 export class TreeNode implements ng.IController {
     static $inject = [
         '$q',
-        'treeNodeService'
+        'treeNodeService',
+        '$log'
     ];
     public isExpanded: boolean;
     public isLoading: boolean;
     public node: any;
 
     constructor(public $q,
-                public treeNodeService) {
+                public treeNodeService,
+                public $log: ng.ILogService) {
         this.isExpanded = false;
         this.isLoading = false;
     }
 
     public getChildren() {
+        this.setSelected();
+        if (!this.node.hasChildren) {
+            return null;
+        }
         this.isExpanded = !this.isExpanded;
-
-        const deferred = this.$q.defer();
         if (!this.isExpanded) {
             this.collapseChildren(this.node);
         } else {
             this.isLoading = true;
             this.expandChildren(this.node);
         }
-        return deferred.promise;
+    }
+
+    private setSelected() {
+        this.$log.debug('set selected: ', this.node);
     }
 
     private icon() {
-        return 'glyphicon glyphicon-folder-open'
+        return 'glyphicon glyphicon-folder-open';
     }
 
     private expandChildren(node) {
-        this.treeNodeService.getChildren(node).then((children) => {
+        return this.treeNodeService.getChildren(node).then((children) => {
             node.children = children;
         }).finally(() => {
             this.isLoading = false;
