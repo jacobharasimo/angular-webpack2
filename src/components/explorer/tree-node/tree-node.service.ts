@@ -1,3 +1,11 @@
+export interface ITreeNode {
+    id: number;
+    name: string;
+    type: string;
+    icon: string;
+    hasChildren: boolean;
+}
+
 export class TreeNodeService {
     static $inject = [
         '$q',
@@ -33,7 +41,7 @@ export class TreeNodeService {
                     icon: 'Something',
                     hasChildren: false
                 }
-            ];
+            ] as ITreeNode[];
         }, 2000);
     }
 }

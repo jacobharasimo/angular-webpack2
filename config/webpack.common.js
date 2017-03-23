@@ -178,9 +178,7 @@ module.exports = function (options) {
          * See: http://webpack.github.io/docs/configuration.html#plugins
          */
         plugins: [
-            new OptimizeJsPlugin({
-                sourceMap: true
-            }),
+
             new ExtractTextPlugin(
                 {
                     filename: '[name].[contenthash].css',

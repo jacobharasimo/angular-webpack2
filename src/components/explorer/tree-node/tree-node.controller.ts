@@ -7,6 +7,7 @@ export class TreeNode implements ng.IController {
     public isExpanded: boolean;
     public isLoading: boolean;
     public node: any;
+    public selected?: any;
 
     constructor(public $q,
                 public treeNodeService,
@@ -30,7 +31,7 @@ export class TreeNode implements ng.IController {
     }
 
     private setSelected() {
-        this.$log.debug('set selected: ', this.node);
+        this.selected.call(this.node);
     }
 
     private icon() {

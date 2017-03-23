@@ -37,16 +37,12 @@
   animation: rotating 2s linear infinite;
 }
 
-.btn-full-width {
-  width: 100%;
+.not-visible{
+  visibility: hidden;
 }
-
 .btn {
   &.text-left {
     text-align: left !important;
-  }
-  &.tree-node {
-    padding-left: 2em;
   }
 }
 

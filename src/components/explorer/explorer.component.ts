@@ -4,6 +4,7 @@ export const ExplorerComponent: ng.IComponentOptions = {
     template: require('./explorer.html'),
     controller: Explorer,
     bindings: {
-        nodes: '<'
+        nodes: '<',
+        ngSelected: '&'
     }
 };

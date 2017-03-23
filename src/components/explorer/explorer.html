@@ -1,5 +1,5 @@
 <ul class="explorer_tree__list list-unstyled">
     <li class="tree_node" ng-repeat="node in $ctrl.nodes track by $index">
-        <tree-node class="block" node="node"></tree-node>
+        <tree-node selected="$ctrl.setSelected(node)" class="block" node="node"></tree-node>
     </li>
 </ul>

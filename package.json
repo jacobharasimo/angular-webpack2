@@ -12,7 +12,7 @@
     "@types/angular-ui-bootstrap": "^0.13.39",
     "@types/angular-ui-router": "^1.1.36",
     "@types/es6-shim": "^0.31.32",
-    "@types/lodash": "ts2.0",
+    "@types/lodash": "^4.14.57",
     "angular": "~1.5.10",
     "angular-animate": "~1.5.10",
     "angular-aria": "~1.5.10",
@@ -22,7 +22,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
     "es6-shim": "^0.35.1",
-    "lodash": "^4.16.4",
+    "lodash": "^4.17.4",
     "uglify-js": "^2.8.15"
   },
   "devDependencies": {

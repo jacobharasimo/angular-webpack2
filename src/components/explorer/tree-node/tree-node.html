@@ -1,24 +1,28 @@
-<button class="btn btn-full-width relative text-left tree-node"
-        ng-click="$ctrl.getChildren()">
-    <span class="absolute left"
-          ng-if="$ctrl.node.hasChildren"
-          ng-switch="$ctrl.isExpanded">
-        <span class="glyphicon glyphicon-chevron-right animate"
-              ng-class="{rotate_90__clockwise:$ctrl.isExpanded}"
-              aria-hidden="true"></span>
-    </span>
-    <span ng-switch="$ctrl.isLoading">
-        <span class="glyphicon glyphicon-refresh rotate_infinite"
-              ng-switch-when="true"
-              aria-hidden="true"></span>
-        <span ng-class="$ctrl.icon()"
-              class="node_icon"
-              ng-switch-when="false"
-              aria-hidden="true"></span>
-        {{$ctrl.node.name}}
-    </span>
-</button>
-
+<span class="flex-parent flex-no-wrap flex-align-center">
+    <button class="btn"
+            ng-class="{'not-visible':!$ctrl.node.hasChildren}"
+            ng-click="$ctrl.getChildren()"
+            ng-switch="$ctrl.isExpanded">
+                <span class="glyphicon glyphicon-chevron-right animate"
+                      ng-class="{rotate_90__clockwise:$ctrl.isExpanded}"
+                      aria-hidden="true"></span>
+    </button>
+    <a class="flex-item-remaining btn btn-link tree-node text-left"
+       ui-sref="aside.bigData({folderID:{{$ctrl.node.id}}})"
+       ng-click="$ctrl.setSelected()">
+        <!--Item template goes here -->
+        <span ng-switch="$ctrl.isLoading">
+            <span class="glyphicon glyphicon-refresh rotate_infinite"
+                  ng-switch-when="true"
+                  aria-hidden="true"></span>
+            <span ng-class="$ctrl.icon()"
+                  class="node_icon"
+                  ng-switch-when="false"
+                  aria-hidden="true"></span>
+            {{$ctrl.node.name}}
+        </span>
+    </a>
+</span>
 <explorer aria-expanded="{{$ctrl.isExpanded}}"
           class="block explorer_tree"
           ng-if="$ctrl.isExpanded"

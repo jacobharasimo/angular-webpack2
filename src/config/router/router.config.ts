@@ -7,7 +7,7 @@ export class RouterConfig {
     constructor($stateProvider: ng.ui.IStateProvider,
                 $urlRouterProvider: ng.ui.IUrlRouterProvider) {
         // pass through / to main state
-        $urlRouterProvider.when('', '/bigData/');
+        $urlRouterProvider.when('', '/bigData');
         // unrecognized routes go to error state
         $urlRouterProvider.otherwise('/404');
         $stateProvider

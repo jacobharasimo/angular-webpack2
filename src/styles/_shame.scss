@@ -29,7 +29,9 @@
 .flex-item-sm {
   flex: 1 0 0;
 }
-
+.flex-item-remaining{
+  flex-grow: 1;
+}
 .flex-item-lg {
   flex: 4 0 0;
 }
@@ -41,6 +43,12 @@
 }
 
 .flex-parent {
+  &.flex-no-wrap{
+    flex-wrap: nowrap;
+  }
+  &.flex-align-center{
+    align-items: center;
+  }
   &.gutter {
     margin: 10px;
     height: calc(100% - 10px);

@@ -3,6 +3,7 @@ export const TreeNodeComponent: ng.IComponentOptions = {
     template: require('./tree-node.html'),
     controller: TreeNode,
     bindings: {
-        node: '<'
+        node: '<',
+        selected: '&'
     }
 };
