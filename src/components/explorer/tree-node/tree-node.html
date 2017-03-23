@@ -1,11 +1,21 @@
-<button class="btn btn-full-width relative text-left"
+<button class="btn btn-full-width relative text-left tree-node"
         ng-click="$ctrl.getChildren()">
-    <span class="absolute left" ng-if="$ctrl.node.hasChildren" ng-switch="$ctrl.isExpanded">
-        <span ng-switch-when="false">&plus;</span>
-        <span ng-switch-when="true">&minus;</span>
+    <span class="absolute left"
+          ng-if="$ctrl.node.hasChildren"
+          ng-switch="$ctrl.isExpanded">
+        <span class="glyphicon glyphicon-chevron-right animate"
+              ng-class="{rotate_90__clockwise:$ctrl.isExpanded}"
+              aria-hidden="true"></span>
     </span>
     <span ng-switch="$ctrl.isLoading">
-        <span ng-switch-when="false" class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> {{$ctrl.node.name}}
+        <span class="glyphicon glyphicon-refresh rotate_infinite"
+              ng-switch-when="true"
+              aria-hidden="true"></span>
+        <span ng-class="$ctrl.icon()"
+              class="node_icon"
+              ng-switch-when="false"
+              aria-hidden="true"></span>
+        {{$ctrl.node.name}}
     </span>
 </button>
 

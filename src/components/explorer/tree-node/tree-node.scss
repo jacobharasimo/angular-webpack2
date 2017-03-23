@@ -1,3 +1,65 @@
-.btn{
-  background: red !important;
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  &.left {
+    left: .5em;
+    top: .5em;
+  }
+}
+
+.animate {
+  transition: all 300ms ease;
+}
+
+.node_icon {
+  padding-right: 3px;
+}
+
+.rotate_90 {
+  &__clockwise {
+    transform: rotate(90deg)
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate_infinite {
+  animation: rotating 2s linear infinite;
+}
+
+.btn-full-width {
+  width: 100%;
+}
+
+.btn {
+  &.text-left {
+    text-align: left !important;
+  }
+  &.tree-node {
+    padding-left: 2em;
+  }
+}
+
+.explorer_tree {
+  &[aria-expanded="true"] {
+    margin-left: 1em;
+    margin-top: .5em;
+    margin-bottom: .5em;
+  }
+}
+
+.explorer_tree__list {
+  .tree_node {
+    margin-bottom: .5em;
+  }
 }

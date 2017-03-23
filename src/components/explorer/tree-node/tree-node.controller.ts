@@ -14,8 +14,10 @@ export class TreeNode implements ng.IController {
     }
 
     public getChildren() {
+        this.isExpanded = !this.isExpanded;
+
         const deferred = this.$q.defer();
-        if (this.isExpanded) {
+        if (!this.isExpanded) {
             this.collapseChildren(this.node);
         } else {
             this.isLoading = true;
@@ -24,10 +26,13 @@ export class TreeNode implements ng.IController {
         return deferred.promise;
     }
 
+    private icon() {
+        return 'glyphicon glyphicon-folder-open'
+    }
+
     private expandChildren(node) {
         this.treeNodeService.getChildren(node).then((children) => {
             node.children = children;
-            this.isExpanded = true;
         }).finally(() => {
             this.isLoading = false;
         });
@@ -35,6 +40,5 @@ export class TreeNode implements ng.IController {
 
     private collapseChildren(node) {
         node.children = null;
-        this.isExpanded = false;
     }
 }

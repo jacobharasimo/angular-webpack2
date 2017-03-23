@@ -14,6 +14,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const OptimizeJsPlugin = require('optimize-js-plugin');
+
 
 /*
  * Webpack Constants
@@ -48,6 +51,7 @@ module.exports = function (options) {
          * See: http://webpack.github.io/docs/configuration.html#entry
          */
         entry: {
+            'polyfills': './src/polyfills.browser.ts',
             'main': './src/index.ts'
         },
 
@@ -127,7 +131,7 @@ module.exports = function (options) {
                     test: /\.scss$/,
                     loader: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        use: ['css-loader']
+                        use: ['css-loader','sass-loader']
                     }),
                     exclude: [helpers.root('src', 'styles')]
                 },
@@ -174,6 +178,9 @@ module.exports = function (options) {
          * See: http://webpack.github.io/docs/configuration.html#plugins
          */
         plugins: [
+            new OptimizeJsPlugin({
+                sourceMap: true
+            }),
             new ExtractTextPlugin(
                 {
                     filename: '[name].[contenthash].css',
@@ -202,10 +209,10 @@ module.exports = function (options) {
              * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
              * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
              */
-            /*new CommonsChunkPlugin({
-             name: 'polyfills',
-             chunks: ['polyfills']
-             }),*/
+            new CommonsChunkPlugin({
+                name: 'polyfills',
+                chunks: ['polyfills']
+            }),
             // This enables tree shaking of the vendor modules
             new CommonsChunkPlugin({
                 name: 'vendor',
@@ -213,10 +220,9 @@ module.exports = function (options) {
                 minChunks: module => /node_modules/.test(module.resource)
             }),
             // Specify the correct order the scripts will be injected in
-            /*new CommonsChunkPlugin({
-             name: ['polyfills', 'vendor'].reverse()
-             }),*/
-
+            new CommonsChunkPlugin({
+                name: ['polyfills', 'vendor'].reverse()
+            }),
             /*
              * Plugin: CopyWebpackPlugin
              * Description: Copy files and directories in webpack.
@@ -272,7 +278,7 @@ module.exports = function (options) {
          * See: https://webpack.github.io/docs/configuration.html#node
          */
         performance: {
-            hints: "warning"
+            hints: false //'warning'|'error'|false
         },
         node: {
             global: true,
