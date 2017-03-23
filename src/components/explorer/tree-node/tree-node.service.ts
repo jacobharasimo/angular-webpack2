@@ -23,7 +23,7 @@ export class TreeNodeService {
                 {
                     id: 2,
                     name: 'Node 2',
-                    type: 'Folder',
+                    type: 'File',
                     icon: 'Something',
                     hasChildren: false
                 },
@@ -37,7 +37,7 @@ export class TreeNodeService {
                 {
                     id: 4,
                     name: 'Node 4',
-                    type: 'Folder',
+                    type: 'File',
                     icon: 'Something',
                     hasChildren: false
                 }

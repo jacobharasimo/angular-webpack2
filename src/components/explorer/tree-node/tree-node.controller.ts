@@ -35,7 +35,7 @@ export class TreeNode implements ng.IController {
 
     private icon() {
         let iconString: string;
-        switch (this.node.type) {
+        switch (this.node.type.toLowerCase()) {
             case 'file':
                 iconString = 'glyphicon glyphicon-file';
                 break;
