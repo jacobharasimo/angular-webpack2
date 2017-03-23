@@ -197,6 +197,10 @@ angular-ui-router@~0.4.0:
   dependencies:
     angular "^1.0.8"
 
+angular-vs-repeat@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/angular-vs-repeat/-/angular-vs-repeat-1.1.7.tgz#ee40fdee5b18a82fcd1282a1acfbb3942c8cd077"
+
 angular@^1.0.8, angular@~1.5.10:
   version "1.5.11"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.5.11.tgz#8c5ba7386f15965c9acf3429f6881553aada30d6"
