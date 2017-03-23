@@ -19,29 +19,23 @@ export class TreeNodeService {
 
     getChildren() {
         return this.$timeout(() => {
-            return [
-                {
-                    id: 2,
-                    name: 'Node 2',
-                    type: 'File',
+            const treeNodeArray: ITreeNode[] = [];
+            const limit = 1000;
+            for (let i = 0; i < limit; ++i) {
+                const nodeIndex: number = 10 + 1;
+                const random_boolean = Math.random() >= 0.5;
+                let nodeType;
+                nodeType = random_boolean ? 'Folder' : 'File';
+                let node: ITreeNode = {
+                    id: nodeIndex,
+                    name: 'Node ' + nodeIndex,
+                    type: nodeType,
                     icon: 'Something',
-                    hasChildren: false
-                },
-                {
-                    id: 3,
-                    name: 'Node 3',
-                    type: 'Folder',
-                    icon: 'Something',
-                    hasChildren: true
-                },
-                {
-                    id: 4,
-                    name: 'Node 4',
-                    type: 'File',
-                    icon: 'Something',
-                    hasChildren: false
-                }
-            ] as ITreeNode[];
-        }, 2000);
+                    hasChildren: random_boolean
+                };
+                treeNodeArray.push(node);
+            }
+            return treeNodeArray;
+        }, 1500);
     }
 }

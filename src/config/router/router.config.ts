@@ -37,7 +37,7 @@ export class RouterConfig {
                         'content@': {
                             template: `
                                 <div class="flex-parent full-height gutter">
-                                    <div class="flex-item-sm flex-item" ui-view="left">A</div>
+                                    <div class="flex-item-sm flex-item vertical_scroll" ui-view="left">A</div>
                                     <div class="flex-item-lg flex-item">ITEM LIST</div>
                                 </div>`
                         }

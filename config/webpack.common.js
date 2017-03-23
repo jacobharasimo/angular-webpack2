@@ -15,7 +15,6 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
-const OptimizeJsPlugin = require('optimize-js-plugin');
 
 
 /*
@@ -118,7 +117,7 @@ module.exports = function (options) {
                     test: /\.css$/,
                     loader: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        use: ['css-loader']
+                        use: ['css-loader', 'postcss-loader']
                     }),
                     exclude: [helpers.root('src', 'styles')]
                 },
@@ -131,7 +130,7 @@ module.exports = function (options) {
                     test: /\.scss$/,
                     loader: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        use: ['css-loader','sass-loader']
+                        use: ['css-loader', 'postcss-loader', 'sass-loader']
                     }),
                     exclude: [helpers.root('src', 'styles')]
                 },
