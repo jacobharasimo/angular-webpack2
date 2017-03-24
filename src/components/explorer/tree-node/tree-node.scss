@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .relative {
   position: relative;
 }
@@ -37,9 +39,10 @@
   animation: rotating 2s linear infinite;
 }
 
-.not-visible{
+.not-visible {
   visibility: hidden;
 }
+
 .btn {
   &.text-left {
     text-align: left !important;
@@ -57,10 +60,20 @@
 .explorer_tree__list {
   .tree_node {
     margin-bottom: .5em;
+    background:#D3D3D3;
+    &.active {
+      background: $brand-info;
+      &:hover {
+        background: lighten($brand-info, 25%);
+      }
+    }
+    &:hover {
+      background: $body-bg;
+    }
   }
 }
 
-.vertical_scroll{
+.vertical_scroll {
   overflow: hidden;
   overflow-y: scroll;
 }

@@ -1,15 +1,15 @@
 <span class="flex-parent flex-no-wrap flex-align-center">
     <button class="btn"
             ng-class="{'not-visible':!$ctrl.node.hasChildren}"
-            ng-click="$ctrl.getChildren($event)"
+            ng-click="::$ctrl.getChildren()"
             ng-switch="$ctrl.isExpanded">
                 <span class="glyphicon glyphicon-chevron-right animate"
                       ng-class="{rotate_90__clockwise:$ctrl.isExpanded}"
                       aria-hidden="true"></span>
     </button>
     <a class="flex-item-remaining btn btn-link tree-node text-left"
-       ui-sref="aside.bigData({folderID:{{$ctrl.node.id}}})"
-       ng-click="$ctrl.setSelected()">
+       ui-sref="aside.bigData({folderID:{{::$ctrl.node.id}}})"
+       ng-click="::$ctrl.setSelected($event)">
         <!--Item template goes here -->
         <span ng-switch="$ctrl.isLoading">
             <span class="glyphicon glyphicon-refresh rotate_infinite"

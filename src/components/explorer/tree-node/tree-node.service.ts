@@ -4,6 +4,7 @@ export interface ITreeNode {
     type: string;
     icon: string;
     hasChildren: boolean;
+    active?: boolean;
 }
 
 export class TreeNodeService {
@@ -22,10 +23,10 @@ export class TreeNodeService {
             const treeNodeArray: ITreeNode[] = [];
             const limit = 1000;
             for (let i = 0; i < limit; ++i) {
-                const nodeIndex: number = 10 + 1;
+                const nodeIndex: number = 10 + i;
                 const random_boolean = Math.random() >= 0.5;
                 let nodeType;
-                nodeType = random_boolean ? 'Folder' : 'File';
+                nodeType = random_boolean ? 'folder' : 'file';
                 let node: ITreeNode = {
                     id: nodeIndex,
                     name: 'Node ' + nodeIndex,

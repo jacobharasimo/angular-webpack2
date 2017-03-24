@@ -3,6 +3,7 @@ import 'angular-vs-repeat';
 import './explorer.scss';
 import { ExplorerComponent } from './explorer.component';
 import { TreeNodeModule } from './tree-node';
+import { ExplorerService } from './explorer.service';
 
 export const ExplorerModule = angular.module('explorer',
     [
@@ -10,4 +11,5 @@ export const ExplorerModule = angular.module('explorer',
         'vs-repeat'
     ])
     .component('explorer', ExplorerComponent)
+    .service('explorerService', ExplorerService)
     .name;

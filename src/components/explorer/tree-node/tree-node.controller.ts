@@ -1,8 +1,10 @@
+import { ITreeNode } from './tree-node.service';
 export class TreeNode implements ng.IController {
     static $inject = [
         '$q',
         'treeNodeService',
-        '$log'
+        '$log',
+        'explorerService'
     ];
     public isExpanded: boolean;
     public isLoading: boolean;
@@ -11,12 +13,13 @@ export class TreeNode implements ng.IController {
 
     constructor(public $q,
                 public treeNodeService,
-                public $log: ng.ILogService) {
+                public $log: ng.ILogService,
+                public explorerService) {
         this.isExpanded = false;
         this.isLoading = false;
     }
 
-    public getChildren(e) {
+    public getChildren() {
         if (!this.node.hasChildren) {
             return null;
         }
@@ -29,14 +32,23 @@ export class TreeNode implements ng.IController {
         }
     }
 
-    private setSelected() {
+    private setSelected(e: Event) {
+        if (!e) {
+            return;
+        }
+        if (this.explorerService.SelectedNode) {
+            this.explorerService.SelectedNode.active = false;
+            this.$log.debug('previous node:', this.explorerService.SelectedNode.id, ' current node ', this.node.id);
+        }
+        this.node.active = true;
+        this.explorerService.SelectedNode = this.node as ITreeNode;
         this.selected.call(this.node);
     }
 
     private icon() {
         let iconString: string;
-        switch (this.node.type.toLower) {
-            case 'File':
+        switch (this.node.type.toLocaleLowerCase()) {
+            case 'file':
                 iconString = 'glyphicon glyphicon-file';
                 break;
             default:

@@ -1,6 +1,5 @@
 // app.module.js
 import * as angular from 'angular';
-import * as uiRouter from 'angular-ui-router';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { CommonModule } from './common/common.module';
@@ -11,8 +10,7 @@ export const AppModule = angular
     .module('app', [
         ConfigModule,
         ComponentsModule,
-        CommonModule,
-        uiRouter as any
+        CommonModule
     ])
     .component('app', AppComponent)
     .name;
