@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const helpers = require('./helpers');
+const metadata = require('./metadata');
 /*
  * Webpack Plugins
  */
@@ -17,14 +18,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
 
-/*
- * Webpack Constants
- */
-const METADATA = {
-    title: 'Angular2-blueprint',
-    baseUrl: '/',
-    isDevServer: helpers.isWebpackDevServer()
-};
 /*
  * Webpack configuration
  *
@@ -69,7 +62,7 @@ module.exports = function (options) {
             extensions: ['.ts', '.js', '.json'],
 
             // An array of directory names to be resolved to the current directory
-            modules: [helpers.root('src'), helpers.root('node_modules')],
+            modules: [helpers.root('src'), helpers.root('node_modules')]
 
         },
 
@@ -167,7 +160,7 @@ module.exports = function (options) {
                     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                     use: 'url-loader?limit=10000'
                 }
-            ],
+            ]
 
         },
 
@@ -243,9 +236,9 @@ module.exports = function (options) {
              */
             new HtmlWebpackPlugin({
                 template: 'src/index.html',
-                title: METADATA.title,
+                title: metadata.title,
                 chunksSortMode: 'dependency',
-                metadata: METADATA,
+                metadata: metadata,
                 inject: 'head'
             }),
 
